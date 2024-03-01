@@ -1,0 +1,53 @@
+﻿<Window x:Class="bratva.Order"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bratva"
+        mc:Ignorable="d"
+        Title="Order" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="itemlist" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonDown">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Item.Name}" Width="400"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Item.Cost}" Width="100"/>
+                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Amount}" Width="100"/>
+                    <GridViewColumn Header="Изображение" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path}" MaxHeight="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="minus" Grid.Column="0" Content="-" Click="minus_Click"/>
+            <Button x:Name="plus" Grid.Column="1" Content="+" Click="plus_Click"/>
+            <Button x:Name="remove" Grid.Column="2" Content="Удалить" Click="remove_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="menu" Grid.Column="0" Content="В каталог" Click="menu_Click"/>
+            <Button x:Name="order" Grid.Column="1" Content="Заказать" Click="order_Click"/>
+        </Grid>
+    </Grid>
+</Window>
